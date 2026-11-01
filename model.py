@@ -51,8 +51,13 @@ def add_ratio_features(df):
     new_df["people_per_house"] = df["population"] / df["households"]
     return new_df
 
-# Step 6 - split_features_labels (not yet solved)
-# TODO: implement
+# Step 6 - split_features_labels
+def split_features_labels(df):
+    # TODO: Return (X without median_house_value, y = median_house_value Series).
+    tmp_df = df.copy()
+    y = tmp_df["median_house_value"].copy()
+    X = tmp_df.drop("median_house_value", axis = 1)
+    return X, y
 
 # Step 7 - ClusterSimilarity (not yet solved)
 # TODO: implement

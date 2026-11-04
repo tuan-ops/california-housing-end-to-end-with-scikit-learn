@@ -1,6 +1,6 @@
 # California Housing, End to End with Scikit-Learn
 
-The classic end-to-end regression project from chapter 2 of Hands-On Machine Learning, done the way it is in practice: download the California housing data, split it honestly, build a leak-proof pipeline with a custom cluster-similarity transformer, tune with RandomizedSearchCV, report test RMSE with a bootstrap interval, then save and serve it.
+The classic end-to-end regression project from Hands-On Machine Learning, done the way it is in practice: download the California housing data, split it honestly, build a leak-proof pipeline with a custom cluster-similarity transformer, tune with RandomizedSearchCV, report test RMSE with a bootstrap interval, then save and serve it.
 
 ## How to run
 
@@ -16,7 +16,7 @@ python scaffold.py
 - [x] **4.** explore_correlations
 - [x] **5.** add_ratio_features
 - [x] **6.** split_features_labels
-- [ ] **7.** ClusterSimilarity
+- [x] **7.** ClusterSimilarity
 - [ ] **8.** numeric_pipeline
 - [ ] **9.** categorical_pipeline
 - [ ] **10.** build_preprocessing

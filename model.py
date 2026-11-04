@@ -59,8 +59,34 @@ def split_features_labels(df):
     X = tmp_df.drop("median_house_value", axis = 1)
     return X, y
 
-# Step 7 - ClusterSimilarity (not yet solved)
-# TODO: implement
+# Step 7 - ClusterSimilarity
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import rbf_kernel
+
+class ClusterSimilarity(BaseEstimator, TransformerMixin):
+    def __init__(self, n_clusters=10, gamma=1.0, random_state=None):
+        # TODO: store the parameters
+        self.n_clusters = n_clusters
+        self.gamma = gamma 
+        self.random_state = random_state
+
+    def fit(self, X, y=None, sample_weight=None):
+        # TODO: fit KMeans(n_clusters, n_init=10, random_state) on X with sample_weight; keep it as self.kmeans_
+        """
+            Tạo đối tượng thuật toán K-means với số lượng tâm cụm, số lượng vòng lặp với 
+            mỗi vòng lặp vị trí các tâm cụm random bất kì đều được giống nhau 
+        """
+        self.kmeans_ = KMeans(n_clusters = self.n_clusters, n_init=10,random_state = self.random_state)
+        # Phân cụm dữ liệu trong X với trọng số để cân bằng dữ liệu để phân cụm hợp lý hơn
+        self.kmeans_.fit(X, sample_weight = sample_weight)
+        return self 
+    def transform(self, X):
+        # TODO: rbf_kernel similarity of each row of X to the cluster centers
+        return rbf_kernel(X, self.kmeans_.cluster_centers_, gamma =self.gamma)
+    def get_feature_names_out(self, names=None):
+        # TODO: ["Cluster 0 similarity", ...]
+        return [f"Cluster {i} similarity" for i in range(self.n_clusters)]
 
 # Step 8 - numeric_pipeline (not yet solved)
 # TODO: implement
